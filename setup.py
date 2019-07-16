@@ -19,7 +19,7 @@ setup(
     author_email='danokhlopkov@gmail.com, eskemerov@gmail.com',
     license='Apache Software License 2.0',
 
-    url='https://github.com/instagrambot/instabot',
+    url='https://github.com/gsdeabr/instabot',
     keywords=['instagram', 'bot', 'api', 'wrapper'],
     install_requires=[
         'tqdm>=4.30.0',
