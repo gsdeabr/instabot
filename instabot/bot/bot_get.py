@@ -38,7 +38,6 @@ def get_user_reel(self, user_id):
     self.api.get_user_reel(user_id)
     return self.api.last_json
 
-
 def get_media_owner(self, media_id):
     self.api.media_info(media_id)
     try:
@@ -300,6 +299,521 @@ def search_users(self, query):
 def get_comment(self):
     try:
         return self.comments_file.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment1(self):
+    try:
+        return self.comments_file1.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment2(self):
+    try:
+        return self.comments_file2.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment3(self):
+    try:
+        return self.comments_file3.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment4(self):
+    try:
+        return self.comments_file4.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment5(self):
+    try:
+        return self.comments_file5.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment6(self):
+    try:
+        return self.comments_file6.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment7(self):
+    try:
+        return self.comments_file7.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment8(self):
+    try:
+        return self.comments_file8.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment9(self):
+    try:
+        return self.comments_file9.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment10(self):
+    try:
+        return self.comments_file10.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment11(self):
+    try:
+        return self.comments_file11.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment12(self):
+    try:
+        return self.comments_file12.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment13(self):
+    try:
+        return self.comments_file13.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment14(self):
+    try:
+        return self.comments_file14.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment15(self):
+    try:
+        return self.comments_file15.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment16(self):
+    try:
+        return self.comments_file16.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment17(self):
+    try:
+        return self.comments_file17.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment18(self):
+    try:
+        return self.comments_file18.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment19(self):
+    try:
+        return self.comments_file19.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment20(self):
+    try:
+        return self.comments_file20.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment21(self):
+    try:
+        return self.comments_file21.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment22(self):
+    try:
+        return self.comments_file22.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment23(self):
+    try:
+        return self.comments_file23.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment24(self):
+    try:
+        return self.comments_file24.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment25(self):
+    try:
+        return self.comments_file25.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment26(self):
+    try:
+        return self.comments_file26.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment27(self):
+    try:
+        return self.comments_file27.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment28(self):
+    try:
+        return self.comments_file28.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment29(self):
+    try:
+        return self.comments_file29.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment30(self):
+    try:
+        return self.comments_file30.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment31(self):
+    try:
+        return self.comments_file31.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment32(self):
+    try:
+        return self.comments_file32.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment33(self):
+    try:
+        return self.comments_file33.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment34(self):
+    try:
+        return self.comments_file34.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment35(self):
+    try:
+        return self.comments_file35.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment36(self):
+    try:
+        return self.comments_file36.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment37(self):
+    try:
+        return self.comments_file37.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment38(self):
+    try:
+        return self.comments_file38.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment39(self):
+    try:
+        return self.comments_file39.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment40(self):
+    try:
+        return self.comments_file40.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment41(self):
+    try:
+        return self.comments_file41.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment42(self):
+    try:
+        return self.comments_file42.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment43(self):
+    try:
+        return self.comments_file43.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment44(self):
+    try:
+        return self.comments_file44.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment45(self):
+    try:
+        return self.comments_file45.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment46(self):
+    try:
+        return self.comments_file46.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment47(self):
+    try:
+        return self.comments_file47.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment48(self):
+    try:
+        return self.comments_file48.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment49(self):
+    try:
+        return self.comments_file49.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment50(self):
+    try:
+        return self.comments_file50.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment51(self):
+    try:
+        return self.comments_file51.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment52(self):
+    try:
+        return self.comments_file52.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment53(self):
+    try:
+        return self.comments_file53.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment54(self):
+    try:
+        return self.comments_file54.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment55(self):
+    try:
+        return self.comments_file55.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment56(self):
+    try:
+        return self.comments_file56.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment57(self):
+    try:
+        return self.comments_file57.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment58(self):
+    try:
+        return self.comments_file58.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment59(self):
+    try:
+        return self.comments_file59.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment60(self):
+    try:
+        return self.comments_file60.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment61(self):
+    try:
+        return self.comments_file61.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment62(self):
+    try:
+        return self.comments_file62.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment63(self):
+    try:
+        return self.comments_file63.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment64(self):
+    try:
+        return self.comments_file64.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment65(self):
+    try:
+        return self.comments_file65.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment66(self):
+    try:
+        return self.comments_file66.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment67(self):
+    try:
+        return self.comments_file67.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment68(self):
+    try:
+        return self.comments_file68.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment69(self):
+    try:
+        return self.comments_file69.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment70(self):
+    try:
+        return self.comments_file70.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment71(self):
+    try:
+        return self.comments_file71.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment72(self):
+    try:
+        return self.comments_file72.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment73(self):
+    try:
+        return self.comments_file73.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment74(self):
+    try:
+        return self.comments_file74.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment75(self):
+    try:
+        return self.comments_file75.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment76(self):
+    try:
+        return self.comments_file76.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment77(self):
+    try:
+        return self.comments_file77.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment78(self):
+    try:
+        return self.comments_file78.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment79(self):
+    try:
+        return self.comments_file79.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment80(self):
+    try:
+        return self.comments_file80.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment81(self):
+    try:
+        return self.comments_file81.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment82(self):
+    try:
+        return self.comments_file82.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment83(self):
+    try:
+        return self.comments_file83.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment84(self):
+    try:
+        return self.comments_file84.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment85(self):
+    try:
+        return self.comments_file85.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment86(self):
+    try:
+        return self.comments_file86.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment87(self):
+    try:
+        return self.comments_file87.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment88(self):
+    try:
+        return self.comments_file88.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment89(self):
+    try:
+        return self.comments_file89.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment90(self):
+    try:
+        return self.comments_file90.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment91(self):
+    try:
+        return self.comments_file91.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment92(self):
+    try:
+        return self.comments_file92.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment93(self):
+    try:
+        return self.comments_file93.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment94(self):
+    try:
+        return self.comments_file94.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment95(self):
+    try:
+        return self.comments_file95.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment96(self):
+    try:
+        return self.comments_file96.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment97(self):
+    try:
+        return self.comments_file97.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment98(self):
+    try:
+        return self.comments_file98.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment99(self):
+    try:
+        return self.comments_file99.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment100(self):
+    try:
+        return self.comments_file100.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment101(self):
+    try:
+        return self.comments_file101.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment102(self):
+    try:
+        return self.comments_file102.random().strip()
+    except IndexError:
+        return "Wow!"
+def get_comment103(self):
+    try:
+        return self.comments_file103.random().strip()
     except IndexError:
         return "Wow!"
 

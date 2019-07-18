@@ -54,6 +54,19 @@ def unfollow_non_followers(self, n_to_unfollows=None):
         self.unfollow(user_id)
     self.console_print(" ===> Unfollow non-followers done! <===", 'red')
 
+def unfollow_non_followers_followed_by_bot(self, n_to_unfollows=None):
+    from random import shuffle
+    self.logger.info("Unfollowing non-followers.")
+    self.console_print(" ===> Start unfollowing non-followers <===", 'red')
+    non_followers = self.followed_file.set - set(self.followers) - self.friends_file.set
+    non_followers = list(non_followers)
+    shuffle(non_followers)
+    for user_id in tqdm(non_followers[:n_to_unfollows]):
+        if self.reached_limit('unfollows'):
+            self.logger.info("Out of unfollows for today.")
+            break
+        self.unfollow(user_id)
+    self.console_print(" ===> Unfollow non-followers done! <===", 'red')
 
 def unfollow_everyone(self):
     self.unfollow_users(self.following)
