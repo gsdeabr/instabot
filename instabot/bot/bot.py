@@ -945,7 +945,7 @@ class Bot(object):
     def download_photos(self, medias, folder='photos', save_description=False):
         return download_photos(self, medias, folder, save_description)
 
-        def upload_photo(self, photo, caption=None, upload_id=None, from_video=False, options={}):
+    def upload_photo(self, photo, caption=None, upload_id=None, from_video=False, options={}):
         """Upload photo to Instagram
 
         @param photo         Path to photo file (String)
