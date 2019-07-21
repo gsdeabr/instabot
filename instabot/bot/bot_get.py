@@ -122,6 +122,18 @@ def get_user_likers(self, user_id, media_count=10):
         media_likers = self.get_media_likers(media_id)
         your_likers |= set(media_likers)
     return list(your_likers)
+	
+def get_users_commented(self, user_id, media_count=10):
+    your_users = set()
+    media_items = self.get_user_medias(user_id, filtration=False)
+    if not media_items:
+        self.logger.warning("Can't get %s medias." % user_id)
+        return []
+    for media_id in tqdm(media_items[:media_count],
+                         desc="Getting %s media likers" % user_id):
+        media_user_commented = self.get_media_commenters(media_id)
+        your_likers |= set(media_user_commented)
+    return list(your_users)
 
 
 def get_hashtag_medias(self, hashtag, filtration=True):
