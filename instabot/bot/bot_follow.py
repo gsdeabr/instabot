@@ -38,7 +38,7 @@ def follow_users(self, user_ids):
 
     # Remove skipped and already followed and unfollowed list from user_ids
     user_ids = list(set(user_ids) - followed.set - unfollowed.set) #- skipped.set 
-    print("After filtering followed, unfollowed : " +len(user_ids) + " user_ids left to follow.")
+    #print("After filtering followed, unfollowed : " +len(user_ids) + " user_ids left to follow.")
     ##msg = 'After filtering followed, unfollowed and `{}`, {} user_ids left to follow.'
     #msg = msg.format(skipped.fname, len(user_ids))
     #self.console_print(msg, 'green')
