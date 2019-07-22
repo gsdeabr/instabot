@@ -132,7 +132,7 @@ def get_users_commented(self, user_id, media_count=10):
     for media_id in tqdm(media_items[:media_count],
                          desc="Getting %s media likers" % user_id):
         media_user_commented = self.get_media_commenters(media_id)
-        your_likers |= set(media_user_commented)
+        your_users |= set(media_user_commented)
     return list(your_users)
 
 

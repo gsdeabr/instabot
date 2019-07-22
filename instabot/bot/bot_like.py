@@ -107,6 +107,7 @@ def like_user(self, user_id, amount=None, filtration=True):
 
 
 def like_users(self, user_ids, nlikes=None, filtration=True):
+    self.logger.info("Starting LIKES")
     for user_id in user_ids:
         if self.reached_limit('likes'):
             self.logger.info("Out of likes for today.")

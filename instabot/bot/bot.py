@@ -37,7 +37,7 @@ from .bot_get import (convert_to_user_id, get_archived_medias, get_comment, get_
                       get_user_likers, get_user_medias, get_user_tags_medias,
                       get_username_from_user_id, get_your_medias, search_users,
                       get_user_stories, get_user_reel, get_self_story_viewers,
-                      get_pending_follow_requests, get_pending_thread_requests)
+                      get_pending_follow_requests, get_pending_thread_requests, get_users_commented)
 from .bot_like import (like, like_comment, like_followers, like_following,
                        like_geotag, like_hashtag, like_media_comments,
                        like_medias, like_timeline, like_user, like_users, like_location_feed)
@@ -613,6 +613,9 @@ class Bot(object):
 
     def get_user_tags_medias(self, user_id):
         return get_user_tags_medias(self, user_id)
+		
+    def get_users_commented(self, user_id, media_count=10):
+        return get_users_commented(self, user_id, media_count)
 
     def get_username_from_user_id(self, user_id):
         return get_username_from_user_id(self, user_id)
