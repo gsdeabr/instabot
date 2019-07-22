@@ -31,7 +31,7 @@ def follow_users(self, user_ids):
         return
     msg = "Going to follow {} users.".format(len(user_ids))
     self.logger.info(msg)
-    #skipped = self.skipped_file
+    skipped = self.skipped_file
     followed = self.followed_file
     unfollowed = self.unfollowed_file
     self.console_print(msg, 'green')
@@ -39,9 +39,9 @@ def follow_users(self, user_ids):
     # Remove skipped and already followed and unfollowed list from user_ids
     user_ids = list(set(user_ids) - followed.set - unfollowed.set) #- skipped.set 
     #print("After filtering followed, unfollowed : " +len(user_ids) + " user_ids left to follow.")
-    ##msg = 'After filtering followed, unfollowed and `{}`, {} user_ids left to follow.'
-    #msg = msg.format(skipped.fname, len(user_ids))
-    #self.console_print(msg, 'green')
+    msg = 'After filtering followed, unfollowed and `{}`, {} user_ids left to follow.'
+    msg = msg.format(skipped.fname, len(user_ids))
+    self.console_print(msg, 'green')
     for user_id in tqdm(user_ids, desc='Processed users'):
         if self.reached_limit('follows'):
             self.logger.info("Out of follows for today.")
