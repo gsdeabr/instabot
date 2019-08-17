@@ -1,3 +1,4 @@
+
 def download_stories(self, username):
     user_id = self.get_user_id_from_username(username)
     list_image, list_video = self.get_user_stories(user_id)
@@ -27,6 +28,7 @@ def watch_users_reels(self, user_ids, max_users=100):
     """
         user_ids - the list of user_id to get their stories
         max_users - max amount of users to get stories from.
+
         It seems like Instagram doesn't allow to get stories from more that 100 users at once.
     """
 
@@ -38,6 +40,10 @@ def watch_users_reels(self, user_ids, max_users=100):
     reels = self.api.get_users_reel(user_ids[:max_users])
 
     # Filter to have users with at least 1 reel
+    if isinstance(reels, list):
+        # strange output
+        return False
+
     reels = {
         k: v for k, v in reels.items() if "items" in v and len(v["items"]) > 0
     }
@@ -53,6 +59,6 @@ def watch_users_reels(self, user_ids, max_users=100):
     # See reels that were not seen before
     # TODO: add counters for watched stories
     if self.api.see_reels(unseen_reels):
-        #self.total['stories_viewed'] += len(unseen_reels)
+        self.total["stories_viewed"] += len(unseen_reels)
         return True
     return False
