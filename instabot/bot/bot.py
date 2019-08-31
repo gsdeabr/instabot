@@ -13,7 +13,7 @@ from .bot_archive import archive, archive_medias, unarchive_medias
 from .bot_block import block, block_bots, block_users, unblock, unblock_users
 from .bot_checkpoint import load_checkpoint, save_checkpoint
 from .bot_comment import (comment, comment_geotag, comment_hashtag, comment_hashtag1,comment_hashtag2,comment_hashtag3,comment_hashtag4,comment_hashtag5,comment_hashtag6,comment_hashtag7,comment_hashtag8,comment_hashtag9,comment_hashtag10,comment_hashtag11,comment_hashtag12,comment_hashtag13,comment_hashtag14,comment_hashtag15,comment_hashtag16,comment_hashtag17,comment_hashtag18,comment_hashtag19,comment_hashtag20,comment_hashtag21,comment_hashtag22,comment_hashtag23,comment_hashtag24,comment_hashtag25,comment_hashtag26,comment_hashtag27,comment_hashtag28,comment_hashtag29,comment_hashtag30,comment_hashtag31,comment_hashtag32,comment_hashtag33,comment_hashtag34,comment_hashtag35,comment_hashtag36,comment_hashtag37,comment_hashtag38,comment_hashtag39,comment_hashtag40,comment_hashtag41,comment_hashtag42,comment_hashtag43,comment_hashtag44,comment_hashtag45,comment_hashtag46,comment_hashtag47,comment_hashtag48,comment_hashtag49,comment_hashtag50,comment_hashtag51,comment_hashtag52,comment_hashtag53,comment_hashtag54,comment_hashtag55,comment_hashtag56,comment_hashtag57,comment_hashtag58,comment_hashtag59,comment_hashtag60,comment_hashtag61,comment_hashtag62,comment_hashtag63,comment_hashtag64,comment_hashtag65,comment_hashtag66,comment_hashtag67,comment_hashtag68,comment_hashtag69,comment_hashtag70,comment_hashtag71,comment_hashtag72,comment_hashtag73,comment_hashtag74,comment_hashtag75,comment_hashtag76,comment_hashtag77,comment_hashtag78,comment_hashtag79,comment_hashtag80,comment_hashtag81,comment_hashtag82,comment_hashtag83,comment_hashtag84,comment_hashtag85,comment_hashtag86,comment_hashtag87,comment_hashtag88,comment_hashtag89,comment_hashtag90,comment_hashtag91,comment_hashtag92,comment_hashtag93,comment_hashtag94,comment_hashtag95,comment_hashtag96,comment_hashtag97,comment_hashtag98,comment_hashtag99,comment_hashtag100,comment_hashtag101,comment_hashtag102,comment_hashtag103,
-                          comment_medias,comment_medias1,comment_medias2,comment_medias3,comment_medias4,comment_medias5,comment_medias6,comment_medias7,comment_medias8,comment_medias9,comment_medias10,comment_medias11,comment_medias12,comment_medias13,comment_medias14,comment_medias15,comment_medias16,comment_medias17,comment_medias18,comment_medias19,comment_medias20,comment_medias21,comment_medias22,comment_medias23,comment_medias24,comment_medias25,comment_medias26,comment_medias27,comment_medias28,comment_medias29,comment_medias30,comment_medias31,comment_medias32,comment_medias33,comment_medias34,comment_medias35,comment_medias36,comment_medias37,comment_medias38,comment_medias39,comment_medias40,comment_medias41,comment_medias42,comment_medias43,comment_medias44,comment_medias45,comment_medias46,comment_medias47,comment_medias48,comment_medias49,comment_medias50,comment_medias51,comment_medias52,comment_medias53,comment_medias54,comment_medias55,comment_medias56,comment_medias57,comment_medias58,comment_medias59,comment_medias60,comment_medias61,comment_medias62,comment_medias63,comment_medias64,comment_medias65,comment_medias66,comment_medias67,comment_medias68,comment_medias69,comment_medias70,comment_medias71,comment_medias72,comment_medias73,comment_medias74,comment_medias75,comment_medias76,comment_medias77,comment_medias78,comment_medias79,comment_medias80,comment_medias81,comment_medias82,comment_medias83,comment_medias84,comment_medias85,comment_medias86,comment_medias87,comment_medias88,comment_medias89,comment_medias90,comment_medias91,comment_medias92,comment_medias93,comment_medias94,comment_medias95,comment_medias96,comment_medias97,comment_medias98,comment_medias99,comment_medias100,comment_medias101,comment_medias102,comment_medias103, comment_user, comment_users,	
+                          comment_medias,comment_medias1,comment_medias2,comment_medias3,comment_medias4,comment_medias5,comment_medias6,comment_medias7,comment_medias8,comment_medias9,comment_medias10,comment_medias11,comment_medias12,comment_medias13,comment_medias14,comment_medias15,comment_medias16,comment_medias17,comment_medias18,comment_medias19,comment_medias20,comment_medias21,comment_medias22,comment_medias23,comment_medias24,comment_medias25,comment_medias26,comment_medias27,comment_medias28,comment_medias29,comment_medias30,comment_medias31,comment_medias32,comment_medias33,comment_medias34,comment_medias35,comment_medias36,comment_medias37,comment_medias38,comment_medias39,comment_medias40,comment_medias41,comment_medias42,comment_medias43,comment_medias44,comment_medias45,comment_medias46,comment_medias47,comment_medias48,comment_medias49,comment_medias50,comment_medias51,comment_medias52,comment_medias53,comment_medias54,comment_medias55,comment_medias56,comment_medias57,comment_medias58,comment_medias59,comment_medias60,comment_medias61,comment_medias62,comment_medias63,comment_medias64,comment_medias65,comment_medias66,comment_medias67,comment_medias68,comment_medias69,comment_medias70,comment_medias71,comment_medias72,comment_medias73,comment_medias74,comment_medias75,comment_medias76,comment_medias77,comment_medias78,comment_medias79,comment_medias80,comment_medias81,comment_medias82,comment_medias83,comment_medias84,comment_medias85,comment_medias86,comment_medias87,comment_medias88,comment_medias89,comment_medias90,comment_medias91,comment_medias92,comment_medias93,comment_medias94,comment_medias95,comment_medias96,comment_medias97,comment_medias98,comment_medias99,comment_medias100,comment_medias101,comment_medias102,comment_medias103, comment_user, comment_users,
                           is_commented, reply_to_comment
 )
 from .bot_delete import delete_comment, delete_media, delete_medias
@@ -484,7 +484,7 @@ class Bot(object):
         if self.api.login(**args) is False:
             return False
         self.prepare()
-        signal.signal(signal.SIGTERM, self.logout)
+        #signal.signal(signal.SIGTERM, self.logout)
         atexit.register(self.logout)
         return True
 
@@ -505,10 +505,10 @@ class Bot(object):
             if val:
                 self.logger.info("Blocked {}".format(key))
         self.logger.info("Total requests: {}".format(self.api.total_requests))
-		
 
-		
-       
+
+
+
 
     def delay(self, key):
         """Sleep only if elapsed time since `self.last[key]` < `self.delay[key]`."""
@@ -622,7 +622,7 @@ class Bot(object):
 
     def get_user_tags_medias(self, user_id):
         return get_user_tags_medias(self, user_id)
-		
+
     def get_users_commented(self, user_id, media_count=10):
         return get_users_commented(self, user_id, media_count)
 
@@ -949,7 +949,7 @@ class Bot(object):
         return upload_story_photo(self, photo, upload_id)
 
     def watch_users_reels(self, user_ids, max_users=100):
-        return watch_users_reels(self, user_ids, max_users=max_users)														 
+        return watch_users_reels(self, user_ids, max_users=max_users)
     # photo
     def download_photo(self, media_id, folder='photos', filename=None, save_description=False):
         return download_photo(self, media_id, folder, filename, save_description)
@@ -992,7 +992,7 @@ class Bot(object):
         return upload_video(self, video, caption, thumbnail, options)
 
     def download_video(self, media_id, folder='videos', filename=None, save_description=False):
-        return download_video(self, media_id, folder, filename, save_description)																							   
+        return download_video(self, media_id, folder, filename, save_description)
 
     # follow
 
@@ -1020,7 +1020,7 @@ class Bot(object):
         return unfollow_non_followers(self, n_to_unfollows)
 
     def unfollow_non_followers_followed_by_bot(self, n_to_unfollows=None):
-        return unfollow_non_followers_followed_by_bot(self, n_to_unfollows)																		  
+        return unfollow_non_followers_followed_by_bot(self, n_to_unfollows)
     def unfollow_everyone(self):
         return unfollow_everyone(self)
 
@@ -1094,7 +1094,7 @@ class Bot(object):
 
     def comment_hashtag(self, hashtag, amount=None):
         return comment_hashtag(self, hashtag, amount)
-		
+
     def comment_hashtag1(self, hashtag, amount=None):
         return comment_hashtag1(self, hashtag, amount)
     def comment_hashtag2(self, hashtag, amount=None):
@@ -1304,7 +1304,7 @@ class Bot(object):
 
     def comment_medias(self, medias):
         return comment_medias(self, medias)
-		
+
     def comment_medias1(self, medias):
         return comment_medias1(self, medias)
     def comment_medias2(self, medias):
