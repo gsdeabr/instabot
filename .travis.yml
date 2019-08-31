@@ -17,7 +17,7 @@ matrix:
     - python: "nightly"
 
 install:
-  - pip install tox-travis codecov
+  - pip install tox-travis codecov bumpversion
 
 script:
  - tox
@@ -28,10 +28,3 @@ after_success:
 
 cache: pip
 
-# deploy:
-#   provider: pypi
-#   user: $PYPI_USERNAME
-#   password: $PYPI_PASSWORD
-#   on:
-#     branch: master
-#     tags: false

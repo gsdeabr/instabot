@@ -1,6 +1,6 @@
-import os
 import atexit
 import datetime
+import os
 import random
 import signal
 import time
@@ -12,227 +12,305 @@ from ..api import API
 from .bot_archive import archive, archive_medias, unarchive_medias
 from .bot_block import block, block_bots, block_users, unblock, unblock_users
 from .bot_checkpoint import load_checkpoint, save_checkpoint
-from .bot_comment import (comment, comment_geotag, comment_hashtag, comment_hashtag1,comment_hashtag2,comment_hashtag3,comment_hashtag4,comment_hashtag5,comment_hashtag6,comment_hashtag7,comment_hashtag8,comment_hashtag9,comment_hashtag10,comment_hashtag11,comment_hashtag12,comment_hashtag13,comment_hashtag14,comment_hashtag15,comment_hashtag16,comment_hashtag17,comment_hashtag18,comment_hashtag19,comment_hashtag20,comment_hashtag21,comment_hashtag22,comment_hashtag23,comment_hashtag24,comment_hashtag25,comment_hashtag26,comment_hashtag27,comment_hashtag28,comment_hashtag29,comment_hashtag30,comment_hashtag31,comment_hashtag32,comment_hashtag33,comment_hashtag34,comment_hashtag35,comment_hashtag36,comment_hashtag37,comment_hashtag38,comment_hashtag39,comment_hashtag40,comment_hashtag41,comment_hashtag42,comment_hashtag43,comment_hashtag44,comment_hashtag45,comment_hashtag46,comment_hashtag47,comment_hashtag48,comment_hashtag49,comment_hashtag50,comment_hashtag51,comment_hashtag52,comment_hashtag53,comment_hashtag54,comment_hashtag55,comment_hashtag56,comment_hashtag57,comment_hashtag58,comment_hashtag59,comment_hashtag60,comment_hashtag61,comment_hashtag62,comment_hashtag63,comment_hashtag64,comment_hashtag65,comment_hashtag66,comment_hashtag67,comment_hashtag68,comment_hashtag69,comment_hashtag70,comment_hashtag71,comment_hashtag72,comment_hashtag73,comment_hashtag74,comment_hashtag75,comment_hashtag76,comment_hashtag77,comment_hashtag78,comment_hashtag79,comment_hashtag80,comment_hashtag81,comment_hashtag82,comment_hashtag83,comment_hashtag84,comment_hashtag85,comment_hashtag86,comment_hashtag87,comment_hashtag88,comment_hashtag89,comment_hashtag90,comment_hashtag91,comment_hashtag92,comment_hashtag93,comment_hashtag94,comment_hashtag95,comment_hashtag96,comment_hashtag97,comment_hashtag98,comment_hashtag99,comment_hashtag100,comment_hashtag101,comment_hashtag102,comment_hashtag103,
-                          comment_medias,comment_medias1,comment_medias2,comment_medias3,comment_medias4,comment_medias5,comment_medias6,comment_medias7,comment_medias8,comment_medias9,comment_medias10,comment_medias11,comment_medias12,comment_medias13,comment_medias14,comment_medias15,comment_medias16,comment_medias17,comment_medias18,comment_medias19,comment_medias20,comment_medias21,comment_medias22,comment_medias23,comment_medias24,comment_medias25,comment_medias26,comment_medias27,comment_medias28,comment_medias29,comment_medias30,comment_medias31,comment_medias32,comment_medias33,comment_medias34,comment_medias35,comment_medias36,comment_medias37,comment_medias38,comment_medias39,comment_medias40,comment_medias41,comment_medias42,comment_medias43,comment_medias44,comment_medias45,comment_medias46,comment_medias47,comment_medias48,comment_medias49,comment_medias50,comment_medias51,comment_medias52,comment_medias53,comment_medias54,comment_medias55,comment_medias56,comment_medias57,comment_medias58,comment_medias59,comment_medias60,comment_medias61,comment_medias62,comment_medias63,comment_medias64,comment_medias65,comment_medias66,comment_medias67,comment_medias68,comment_medias69,comment_medias70,comment_medias71,comment_medias72,comment_medias73,comment_medias74,comment_medias75,comment_medias76,comment_medias77,comment_medias78,comment_medias79,comment_medias80,comment_medias81,comment_medias82,comment_medias83,comment_medias84,comment_medias85,comment_medias86,comment_medias87,comment_medias88,comment_medias89,comment_medias90,comment_medias91,comment_medias92,comment_medias93,comment_medias94,comment_medias95,comment_medias96,comment_medias97,comment_medias98,comment_medias99,comment_medias100,comment_medias101,comment_medias102,comment_medias103, comment_user, comment_users,
-                          is_commented, reply_to_comment
+from .bot_comment import (
+    comment,
+    comment_geotag,
+    comment_hashtag,
+    comment_hashtag1,comment_hashtag2,comment_hashtag3,comment_hashtag4,comment_hashtag5,comment_hashtag6,comment_hashtag7,comment_hashtag8,comment_hashtag9,comment_hashtag10,comment_hashtag11,comment_hashtag12,comment_hashtag13,comment_hashtag14,comment_hashtag15,comment_hashtag16,comment_hashtag17,comment_hashtag18,comment_hashtag19,comment_hashtag20,comment_hashtag21,comment_hashtag22,comment_hashtag23,comment_hashtag24,comment_hashtag25,comment_hashtag26,comment_hashtag27,comment_hashtag28,
+    comment_hashtag29,comment_hashtag30,comment_hashtag31,comment_hashtag32,comment_hashtag33,comment_hashtag34,comment_hashtag35,comment_hashtag36,comment_hashtag37,comment_hashtag38,comment_hashtag39,comment_hashtag40,comment_hashtag41,comment_hashtag42,comment_hashtag43,comment_hashtag44,comment_hashtag45,comment_hashtag46,comment_hashtag47,comment_hashtag48,comment_hashtag49,comment_hashtag50,comment_hashtag51,comment_hashtag52,comment_hashtag53,comment_hashtag54,comment_hashtag55, comment_hashtag56,comment_hashtag57,comment_hashtag58,comment_hashtag59,comment_hashtag60,comment_hashtag61,comment_hashtag62,comment_hashtag63,comment_hashtag64,comment_hashtag65,comment_hashtag66,comment_hashtag67,comment_hashtag68,comment_hashtag69,comment_hashtag70,comment_hashtag71,comment_hashtag72,comment_hashtag73,comment_hashtag74,comment_hashtag75,comment_hashtag76,comment_hashtag77,comment_hashtag78,comment_hashtag79,comment_hashtag80,comment_hashtag81,comment_hashtag82, comment_hashtag83, coment_hashtag84,comment_hashtag85,comment_hashtag86,comment_hashtag87,comment_hashtag88,comment_hashtag89,comment_hashtag90,comment_hashtag91,comment_hashtag92,comment_hashtag93,comment_hashtag94,comment_hashtag95,comment_hashtag96,comment_hashtag97,comment_hashtag98,comment_hashtag99,comment_hashtag100,comment_hashtag101,comment_hashtag102,comment_hashtag103,
+    comment_medias,comment_medias1,comment_medias2,comment_medias3,comment_medias4,comment_medias5,comment_medias6,comment_medias7,comment_medias8,comment_medias9,comment_medias10,comment_medias11,comment_medias12,comment_medias13,comment_medias14,comment_medias15,comment_medias16,comment_medias17,comment_medias18,comment_medias19,comment_medias20,comment_medias21,comment_medias22,comment_medias23,comment_medias24,comment_medias25,comment_medias26,comment_medias27,comment_medias28, comment_medias29,comment_medias30,comment_medias31,comment_medias32,comment_medias33,comment_medias34,comment_medias35,comment_medias36,comment_medias37,comment_medias38,comment_medias39,comment_medias40,comment_medias41,comment_medias42,comment_medias43,comment_medias44,comment_medias45,comment_medias46,comment_medias47,comment_medias48,comment_medias49,comment_medias50,comment_medias51,comment_medias52,comment_medias53,comment_medias54,comment_medias55,comment_medias56,comment_medias57, comment_medias58,comment_medias59,comment_medias60,comment_medias61,comment_medias62,comment_medias63,comment_medias64,comment_medias65,comment_medias66,comment_medias67,comment_medias68,comment_medias69,comment_medias70,comment_medias71,comment_medias72,comment_medias73,comment_medias74,comment_medias75,comment_medias76,comment_medias77,comment_medias78,comment_medias79,comment_medias80,comment_medias81,comment_medias82,comment_medias83,comment_medias84,comment_medias85,comment_medias86, comment_medias87,comment_medias88,comment_medias89,comment_medias90,comment_medias91,comment_medias92,comment_medias93,comment_medias94,comment_medias95,comment_medias96,comment_medias97,comment_medias98,comment_medias99,comment_medias100,comment_medias101,comment_medias102,comment_medias103,
+    comment_medias,
+    comment_user,
+    comment_users,
+    is_commented,
+    reply_to_comment,
 )
 from .bot_delete import delete_comment, delete_media, delete_medias
-from .bot_direct import (send_hashtag, send_like, send_media, send_medias,
-                         send_message, send_messages, send_profile, send_photo,
-                         approve_pending_thread_requests
+from .bot_direct import (
+    approve_pending_thread_requests,
+    send_hashtag,
+    send_like,
+    send_media,
+    send_medias,
+    send_message,
+    send_messages,
+    send_photo,
+    send_profile,
 )
-from .bot_filter import (check_media, check_not_bot, check_user, filter_medias)
-from .bot_follow import (follow, follow_followers, follow_following,
-                         follow_users, approve_pending_follow_requests, reject_pending_follow_requests)
-from .bot_get import (convert_to_user_id, get_archived_medias, get_comment, get_comment1, get_comment2,get_comment3,get_comment4,get_comment5,get_comment6,get_comment7,get_comment8,get_comment9,get_comment10,get_comment11,get_comment12,get_comment13,get_comment14,get_comment15,get_comment16,get_comment17,get_comment18,get_comment19,get_comment20,get_comment21,get_comment22,get_comment23,get_comment24,get_comment25,get_comment26,get_comment27,get_comment28,get_comment29,get_comment30,get_comment31,get_comment32,get_comment33,get_comment34,get_comment35,get_comment36,get_comment37,get_comment38,get_comment39,get_comment40,get_comment41,get_comment42,get_comment43,get_comment44,get_comment45,get_comment46,get_comment47,get_comment48,get_comment49,get_comment50,get_comment51,get_comment52,get_comment53,get_comment54,get_comment55,get_comment56,get_comment57,get_comment58,get_comment59,get_comment60,get_comment61,get_comment62,get_comment63,get_comment64,get_comment65,get_comment66,get_comment67,get_comment68,get_comment69,get_comment70,get_comment71,get_comment72,get_comment73,get_comment74,get_comment75,get_comment76,get_comment77,get_comment78,get_comment79,get_comment80,get_comment81,get_comment82,get_comment83,get_comment84,get_comment85,get_comment86,get_comment87,get_comment88,get_comment89,get_comment90,get_comment91,get_comment92,get_comment93,get_comment94,get_comment95,get_comment96,get_comment97,get_comment98,get_comment99,get_comment100,get_comment101,get_comment102,get_comment103,
-                      get_comment_likers, get_geotag_medias, get_geotag_users,
-                      get_hashtag_medias, get_hashtag_users,
-                      get_last_user_medias, get_locations_from_coordinates,
-                      get_media_commenters, get_media_comments,
-                      get_media_comments_all, get_media_id_from_link,
-                      get_link_from_media_id, get_media_info, get_media_likers,
-                      get_media_owner, get_messages, get_popular_medias,
-                      get_timeline_medias, get_timeline_users,
-                      get_total_hashtag_medias, get_total_user_medias,
-                      get_user_followers, get_user_following,
-                      get_user_id_from_username, get_user_info,
-                      get_user_likers, get_user_medias, get_user_tags_medias,
-                      get_username_from_user_id, get_your_medias, search_users,
-                      get_user_stories, get_user_reel, get_self_story_viewers,
-                      get_pending_follow_requests, get_pending_thread_requests, get_users_commented)
-from .bot_like import (like, like_comment, like_followers, like_following,
-                       like_geotag, like_hashtag, like_media_comments,
-                       like_medias, like_timeline, like_user, like_users, like_location_feed)
+from .bot_filter import check_media, check_not_bot, check_user, filter_medias
+from .bot_follow import (
+    approve_pending_follow_requests,
+    follow,
+    follow_followers,
+    follow_following,
+    follow_users,
+    reject_pending_follow_requests,
+)
+from .bot_get import (
+    convert_to_user_id,
+    get_archived_medias,
+    get_comment,
+    get_comment_likers,
+    get_geotag_medias,
+    get_geotag_users,
+    get_hashtag_medias,
+    get_hashtag_users,
+    get_last_user_medias,
+    get_link_from_media_id,
+    get_locations_from_coordinates,
+    get_media_commenters,
+    get_media_comments,
+    get_media_comments_all,
+    get_media_id_from_link,
+    get_media_info,
+    get_media_likers,
+    get_media_owner,
+    get_messages,
+    get_pending_follow_requests,
+    get_pending_thread_requests,
+    get_popular_medias,
+    get_self_story_viewers,
+    get_timeline_medias,
+    get_timeline_users,
+    get_total_hashtag_medias,
+    get_total_user_medias,
+    get_user_followers,
+    get_user_following,
+    get_user_id_from_username,
+    get_user_info,
+    get_user_likers,
+    get_user_medias,
+    get_user_reel,
+    get_user_stories,
+    get_user_tags_medias,
+    get_username_from_user_id,
+    get_your_medias,
+    search_users,
+    get_comment1,get_users_commented, get_comment2,get_comment3,get_comment4,get_comment5,get_comment6,get_comment7,get_comment8,get_comment9,get_comment10,get_comment11,get_comment12,get_comment13,get_comment14,get_comment15,get_comment16,get_comment17,get_comment18,get_comment19,get_comment20,get_comment21,get_comment22,get_comment23,get_comment24,get_comment25,get_comment26,get_comment27,get_comment28,get_comment29,get_comment30,get_comment31,get_comment32,get_comment33,get_comment34,get_comment35,get_comment36,get_comment37,get_comment38,get_comment39,get_comment40,get_comment41,get_comment42,get_comment43,get_comment44,get_comment45,get_comment46,get_comment47,get_comment48,get_comment49,get_comment50,get_comment51,get_comment52,get_comment53,get_comment54,get_comment55,get_comment56,get_comment57,get_comment58,get_comment59,get_comment60,get_comment61,get_comment62,get_comment63,get_comment64,get_comment65,get_comment66,get_comment67,get_comment68,get_comment69,get_comment70,get_comment71,get_comment72, get_comment73,get_comment74,get_comment75,get_comment76,get_comment77,get_comment78,get_comment79,get_comment80,get_comment81,get_comment82,get_comment83,get_comment84,get_comment85,get_comment86,get_comment87,get_comment88,get_comment89,get_comment90,get_comment91,get_comment92,get_comment93,get_comment94,get_comment95,get_comment96,get_comment97,get_comment98,get_comment99,get_comment100,get_comment101,get_comment102,get_comment103,
+)
+from .bot_like import (
+    like,
+    like_comment,
+    like_followers,
+    like_following,
+    like_geotag,
+    like_hashtag,
+    like_location_feed,
+    like_media_comments,
+    like_medias,
+    like_timeline,
+    like_user,
+    like_users,
+)
+
 from .bot_photo import download_photo, download_photos, upload_photo
 from .bot_stats import save_user_stats
-from .bot_support import (check_if_file_exists, console_print, extract_urls,
-                          read_list_from_file)
-from .bot_unfollow import (unfollow, unfollow_everyone, unfollow_non_followers,
-                           unfollow_users, unfollow_non_followers_followed_by_bot)
-from .bot_unlike import (unlike, unlike_comment, unlike_media_comments,
-                         unlike_medias, unlike_user)
-from .bot_video import upload_video, download_video
 from .bot_story import download_stories, upload_story_photo, watch_users_reels
+from .bot_support import (
+    check_if_file_exists,
+    console_print,
+    extract_urls,
+    read_list_from_file,
+)
+from .bot_unfollow import (
+    unfollow,
+    unfollow_everyone,
+    unfollow_non_followers,
+    unfollow_users,
+    unfollow_non_followers_followed_by_bot,
+)
+from .bot_unlike import (
+    unlike,
+    unlike_comment,
+    unlike_media_comments,
+    unlike_medias,
+    unlike_user,
+)
+from .bot_video import download_video, upload_video
 
 
 class Bot(object):
-    def __init__(self,
-                 whitelist_file='whitelist.txt',
-                 blacklist_file='blacklist.txt',
-                 comments_file='comments.txt',
-				 comments_file1='comment/comment1.txt',
-				 comments_file2='comment/comment2.txt',
-				 comments_file3='comment/comment3.txt',
-				 comments_file4='comment/comment4.txt',
-				 comments_file5='comment/comment5.txt',
-				 comments_file6='comment/comment6.txt',
-				 comments_file7='comment/comment7.txt',
-				 comments_file8='comment/comment8.txt',
-				 comments_file9='comment/comment9.txt',
-				 comments_file10='comment/comment10.txt',
-				 comments_file11='comment/comment11.txt',
-				 comments_file12='comment/comment12.txt',
-				 comments_file13='comment/comment13.txt',
-				 comments_file14='comment/comment14.txt',
-				 comments_file15='comment/comment15.txt',
-				 comments_file16='comment/comment16.txt',
-				 comments_file17='comment/comment17.txt',
-				 comments_file18='comment/comment18.txt',
-				 comments_file19='comment/comment19.txt',
-				 comments_file20='comment/comment20.txt',
-				 comments_file21='comment/comment21.txt',
-				 comments_file22='comment/comment22.txt',
-				 comments_file23='comment/comment23.txt',
-				 comments_file24='comment/comment24.txt',
-				 comments_file25='comment/comment25.txt',
-				 comments_file26='comment/comment26.txt',
-				 comments_file27='comment/comment27.txt',
-				 comments_file28='comment/comment28.txt',
-				 comments_file29='comment/comment29.txt',
-				 comments_file30='comment/comment30.txt',
-				 comments_file31='comment/comment31.txt',
-				 comments_file32='comment/comment32.txt',
-				 comments_file33='comment/comment33.txt',
-				 comments_file34='comment/comment34.txt',
-				 comments_file35='comment/comment35.txt',
-				 comments_file36='comment/comment36.txt',
-				 comments_file37='comment/comment37.txt',
-				 comments_file38='comment/comment38.txt',
-				 comments_file39='comment/comment39.txt',
-				 comments_file40='comment/comment40.txt',
-				 comments_file41='comment/comment41.txt',
-				 comments_file42='comment/comment42.txt',
-				 comments_file43='comment/comment43.txt',
-				 comments_file44='comment/comment44.txt',
-				 comments_file45='comment/comment45.txt',
-				 comments_file46='comment/comment46.txt',
-				 comments_file47='comment/comment47.txt',
-				 comments_file48='comment/comment48.txt',
-				 comments_file49='comment/comment49.txt',
-				 comments_file50='comment/comment50.txt',
-				 comments_file51='comment/comment51.txt',
-				 comments_file52='comment/comment52.txt',
-				 comments_file53='comment/comment53.txt',
-				 comments_file54='comment/comment54.txt',
-				 comments_file55='comment/comment55.txt',
-				 comments_file56='comment/comment56.txt',
-				 comments_file57='comment/comment57.txt',
-				 comments_file58='comment/comment58.txt',
-				 comments_file59='comment/comment59.txt',
-				 comments_file60='comment/comment60.txt',
-				 comments_file61='comment/comment61.txt',
-				 comments_file62='comment/comment62.txt',
-				 comments_file63='comment/comment63.txt',
-				 comments_file64='comment/comment64.txt',
-				 comments_file65='comment/comment65.txt',
-				 comments_file66='comment/comment66.txt',
-				 comments_file67='comment/comment67.txt',
-				 comments_file68='comment/comment68.txt',
-				 comments_file69='comment/comment69.txt',
-				 comments_file70='comment/comment70.txt',
-				 comments_file71='comment/comment71.txt',
-				 comments_file72='comment/comment72.txt',
-				 comments_file73='comment/comment73.txt',
-				 comments_file74='comment/comment74.txt',
-				 comments_file75='comment/comment75.txt',
-				 comments_file76='comment/comment76.txt',
-				 comments_file77='comment/comment77.txt',
-				 comments_file78='comment/comment78.txt',
-				 comments_file79='comment/comment79.txt',
-				 comments_file80='comment/comment80.txt',
-				 comments_file81='comment/comment81.txt',
-				 comments_file82='comment/comment82.txt',
-				 comments_file83='comment/comment83.txt',
-				 comments_file84='comment/comment84.txt',
-				 comments_file85='comment/comment85.txt',
-				 comments_file86='comment/comment86.txt',
-				 comments_file87='comment/comment87.txt',
-				 comments_file88='comment/comment88.txt',
-				 comments_file89='comment/comment89.txt',
-				 comments_file90='comment/comment90.txt',
-				 comments_file91='comment/comment91.txt',
-				 comments_file92='comment/comment92.txt',
-				 comments_file93='comment/comment93.txt',
-				 comments_file94='comment/comment94.txt',
-				 comments_file95='comment/comment95.txt',
-				 comments_file96='comment/comment96.txt',
-				 comments_file97='comment/comment97.txt',
-				 comments_file98='comment/comment98.txt',
-				 comments_file99='comment/comment99.txt',
-				 comments_file100='comment/comment100.txt',
-				 comments_file101='comment/comment101.txt',
-				 comments_file102='comment/comment102.txt',
-				 comments_file103='comment/comment103.txt',
-                 followed_file='followed.txt',
-                 unfollowed_file='unfollowed.txt',
-                 skipped_file='skipped.txt',
-                 friends_file='friends.txt',
-                 base_path='',
-                 proxy=None,
-                 max_likes_per_day=1000,
-                 max_unlikes_per_day=1000,
-                 max_follows_per_day=350,
-                 max_unfollows_per_day=350,
-                 max_comments_per_day=100,
-                 max_blocks_per_day=100,
-                 max_unblocks_per_day=100,
-                 max_likes_to_like=100,
-                 min_likes_to_like=20,
-                 max_messages_per_day=300,
-                 filter_users=True,
-                 filter_private_users=True,
-                 filter_users_without_profile_photo=True,
-                 filter_previously_followed=False,
-                 filter_business_accounts=True,
-                 filter_verified_accounts=True,
-                 max_followers_to_follow=2000,
-                 min_followers_to_follow=10,
-                 max_following_to_follow=2000,
-                 min_following_to_follow=10,
-                 max_followers_to_following_ratio=10,
-                 max_following_to_followers_ratio=2,
-                 min_media_count_to_follow=3,
-                 max_following_to_block=2000,
-                 like_delay=10,
-                 unlike_delay=10,
-                 follow_delay=30,
-                 unfollow_delay=30,
-                 comment_delay=60,
-                 block_delay=30,
-                 unblock_delay=30,
-                 message_delay=60,
-                 stop_words=('shop', 'store', 'free'),
-                 blacklist_hashtags=['#shop', '#store', '#free'],
-                 blocked_actions_protection=True,
-                 verbosity=True,
-                 device=None
-                 ):
+    def __init__(
+        self,
+        whitelist_file="whitelist.txt",
+        blacklist_file="blacklist.txt",
+        comments_file="comments.txt",
+        comments_file1='comment/comment1.txt',
+		comments_file2='comment/comment2.txt',
+		comments_file3='comment/comment3.txt',
+		comments_file4='comment/comment4.txt',
+		comments_file5='comment/comment5.txt',
+		comments_file6='comment/comment6.txt',
+		comments_file7='comment/comment7.txt',
+		comments_file8='comment/comment8.txt',
+		comments_file9='comment/comment9.txt',
+		comments_file10='comment/comment10.txt',
+		comments_file11='comment/comment11.txt',
+		comments_file12='comment/comment12.txt',
+		comments_file13='comment/comment13.txt',
+		comments_file14='comment/comment14.txt',
+		comments_file15='comment/comment15.txt',
+		comments_file16='comment/comment16.txt',
+		comments_file17='comment/comment17.txt',
+		comments_file18='comment/comment18.txt',
+		comments_file19='comment/comment19.txt',
+		comments_file20='comment/comment20.txt',
+		comments_file21='comment/comment21.txt',
+		comments_file22='comment/comment22.txt',
+		comments_file23='comment/comment23.txt',
+		comments_file24='comment/comment24.txt',
+		comments_file25='comment/comment25.txt',
+		comments_file26='comment/comment26.txt',
+		comments_file27='comment/comment27.txt',
+		comments_file28='comment/comment28.txt',
+		comments_file29='comment/comment29.txt',
+		comments_file30='comment/comment30.txt',
+		comments_file31='comment/comment31.txt',
+		comments_file32='comment/comment32.txt',
+		comments_file33='comment/comment33.txt',
+		comments_file34='comment/comment34.txt',
+		comments_file35='comment/comment35.txt',
+		comments_file36='comment/comment36.txt',
+		comments_file37='comment/comment37.txt',
+		comments_file38='comment/comment38.txt',
+		comments_file39='comment/comment39.txt',
+		comments_file40='comment/comment40.txt',
+		comments_file41='comment/comment41.txt',
+		comments_file42='comment/comment42.txt',
+		comments_file43='comment/comment43.txt',
+		comments_file44='comment/comment44.txt',
+		comments_file45='comment/comment45.txt',
+		comments_file46='comment/comment46.txt',
+		comments_file47='comment/comment47.txt',
+		comments_file48='comment/comment48.txt',
+		comments_file49='comment/comment49.txt',
+		comments_file50='comment/comment50.txt',
+		comments_file51='comment/comment51.txt',
+		comments_file52='comment/comment52.txt',
+		comments_file53='comment/comment53.txt',
+		comments_file54='comment/comment54.txt',
+		comments_file55='comment/comment55.txt',
+		comments_file56='comment/comment56.txt',
+		comments_file57='comment/comment57.txt',
+		comments_file58='comment/comment58.txt',
+		comments_file59='comment/comment59.txt',
+		comments_file60='comment/comment60.txt',
+		comments_file61='comment/comment61.txt',
+		comments_file62='comment/comment62.txt',
+		comments_file63='comment/comment63.txt',
+		comments_file64='comment/comment64.txt',
+		comments_file65='comment/comment65.txt',
+		comments_file66='comment/comment66.txt',
+		comments_file67='comment/comment67.txt',
+		comments_file68='comment/comment68.txt',
+		comments_file69='comment/comment69.txt',
+		comments_file70='comment/comment70.txt',
+		comments_file71='comment/comment71.txt',
+		comments_file72='comment/comment72.txt',
+		comments_file73='comment/comment73.txt',
+		comments_file74='comment/comment74.txt',
+		comments_file75='comment/comment75.txt',
+		comments_file76='comment/comment76.txt',
+		comments_file77='comment/comment77.txt',
+		comments_file78='comment/comment78.txt',
+		comments_file79='comment/comment79.txt',
+		comments_file80='comment/comment80.txt',
+		comments_file81='comment/comment81.txt',
+		comments_file82='comment/comment82.txt',
+		comments_file83='comment/comment83.txt',
+		comments_file84='comment/comment84.txt',
+		comments_file85='comment/comment85.txt',
+		comments_file86='comment/comment86.txt',
+		comments_file87='comment/comment87.txt',
+		comments_file88='comment/comment88.txt',
+		comments_file89='comment/comment89.txt',
+		comments_file90='comment/comment90.txt',
+		comments_file91='comment/comment91.txt',
+		comments_file92='comment/comment92.txt',
+		comments_file93='comment/comment93.txt',
+		comments_file94='comment/comment94.txt',
+		comments_file95='comment/comment95.txt',
+		comments_file96='comment/comment96.txt',
+		comments_file97='comment/comment97.txt',
+		comments_file98='comment/comment98.txt',
+		comments_file99='comment/comment99.txt',
+		comments_file100='comment/comment100.txt',
+		comments_file101='comment/comment101.txt',
+		comments_file102='comment/comment102.txt',
+		comments_file103='comment/comment103.txt',
+        followed_file="followed.txt",
+        unfollowed_file="unfollowed.txt",
+        skipped_file="skipped.txt",
+        friends_file="friends.txt",
+        base_path="",
+        proxy=None,
+        max_likes_per_day=1000,
+        max_unlikes_per_day=1000,
+        max_follows_per_day=350,
+        max_unfollows_per_day=350,
+        max_comments_per_day=100,
+        max_blocks_per_day=100,
+        max_unblocks_per_day=100,
+        max_likes_to_like=100,
+        min_likes_to_like=20,
+        max_messages_per_day=300,
+        filter_users=True,
+        filter_private_users=True,
+        filter_users_without_profile_photo=False,
+        filter_previously_followed=False,
+        filter_business_accounts=False,
+        filter_verified_accounts=False,
+        max_followers_to_follow=5000,
+        min_followers_to_follow=10,
+        max_following_to_follow=2000,
+        min_following_to_follow=10,
+        max_followers_to_following_ratio=15,
+        max_following_to_followers_ratio=15,
+        min_media_count_to_follow=3,
+        max_following_to_block=2000,
+        like_delay=10,
+        unlike_delay=10,
+        follow_delay=30,
+        unfollow_delay=30,
+        comment_delay=60,
+        block_delay=30,
+        unblock_delay=30,
+        message_delay=60,
+        stop_words=("shop", "store", "free"),
+        blacklist_hashtags=["#shop", "#store", "#free"],
+        blocked_actions_protection=True,
+        verbosity=True,
+        device=None,
+    ):
         self.api = API(device=device, base_path=base_path)
         self.base_path = base_path
 
-        self.total = {'likes': 0,
-                      'unlikes': 0,
-                      'follows': 0,
-                      'unfollows': 0,
-                      'comments': 0,
-                      'blocks': 0,
-                      'unblocks': 0,
-                      'messages': 0,
-                      'archived': 0,
-                      'unarchived': 0,
-					  'stories_viewed': 0
-					  }
+        self.total = {
+            "likes": 0,
+            "unlikes": 0,
+            "follows": 0,
+            "unfollows": 0,
+            "comments": 0,
+            "blocks": 0,
+            "unblocks": 0,
+            "messages": 0,
+            "archived": 0,
+            "unarchived": 0,
+            "stories_viewed": 0,
+        }
 
         self.start_time = datetime.datetime.now()
 
-        self.delays = {'like': like_delay,
-                       'unlike': unlike_delay,
-                       'follow': follow_delay,
-                       'unfollow': unfollow_delay,
-                       'comment': comment_delay,
-                       'block': block_delay,
-                       'unblock': unblock_delay,
-                       'message': message_delay}
+        self.delays = {
+            "like": like_delay,
+            "unlike": unlike_delay,
+            "follow": follow_delay,
+            "unfollow": unfollow_delay,
+            "comment": comment_delay,
+            "block": block_delay,
+            "unblock": unblock_delay,
+            "message": message_delay,
+        }
 
         self.last = {key: 0 for key in self.delays.keys()}
 
@@ -244,6 +322,7 @@ class Bot(object):
         self.filter_verified_accounts = filter_verified_accounts
         self.filter_previously_followed = filter_previously_followed
 
+<<<<<<< HEAD
         self.max_per_day = {'likes': max_likes_per_day,
                             'unlikes': max_unlikes_per_day,
                             'follows': max_follows_per_day,
@@ -263,6 +342,31 @@ class Bot(object):
                                 'blocks': False,
                                 'unblocks': False,
                                 'messages': False}
+=======
+        self.max_per_day = {
+            "likes": max_likes_per_day,
+            "unlikes": max_unlikes_per_day,
+            "follows": max_follows_per_day,
+            "unfollows": max_unfollows_per_day,
+            "comments": max_comments_per_day,
+            "blocks": max_blocks_per_day,
+            "unblocks": max_unblocks_per_day,
+            "messages": max_messages_per_day,
+        }
+
+        self.blocked_actions_protection = blocked_actions_protection
+
+        self.blocked_actions = {
+            "likes": False,
+            "unlikes": False,
+            "follows": False,
+            "unfollows": False,
+            "comments": False,
+            "blocks": False,
+            "unblocks": False,
+            "messages": False,
+        }
+>>>>>>> upstream/master
 
         self.max_likes_to_like = max_likes_to_like
         self.min_likes_to_like = min_likes_to_like
@@ -410,7 +514,7 @@ class Bot(object):
         self.verbosity = verbosity
 
         self.logger = self.api.logger
-        self.logger.info('Instabot Started')
+        self.logger.info("Instabot Started")
 
     @property
     def user_id(self):
@@ -435,33 +539,39 @@ class Bot(object):
     @property
     def blacklist(self):
         # This is a fast operation because `get_user_id_from_username` is cached.
-        return [self.convert_to_user_id(i) for i in self.blacklist_file.list
-                if i is not None]
+        return [
+            self.convert_to_user_id(i)
+            for i in self.blacklist_file.list
+            if i is not None
+        ]
 
     @property
     def whitelist(self):
         # This is a fast operation because `get_user_id_from_username` is cached.
-        return [self.convert_to_user_id(i) for i in self.whitelist_file.list
-                if i is not None]
+        return [
+            self.convert_to_user_id(i)
+            for i in self.whitelist_file.list
+            if i is not None
+        ]
 
     @property
     def following(self):
         now = time.time()
-        last = self.last.get('updated_following', now)
+        last = self.last.get("updated_following", now)
         if self._following is None or now - last > 7200:
-            self.console_print('`bot.following` is empty, will download.', 'green')
+            self.console_print("`bot.following` is empty, will download.", "green")
             self._following = self.get_user_following(self.user_id)
-            self.last['updated_following'] = now
+            self.last["updated_following"] = now
         return self._following
 
     @property
     def followers(self):
         now = time.time()
-        last = self.last.get('updated_followers', now)
+        last = self.last.get("updated_followers", now)
         if self._followers is None or now - last > 7200:
-            self.console_print('`bot.followers` is empty, will download.', 'green')
+            self.console_print("`bot.followers` is empty, will download.", "green")
             self._followers = self.get_user_followers(self.user_id)
-            self.last['updated_followers'] = now
+            self.last["updated_followers"] = now
         return self._followers
 
     def version(self):
@@ -469,38 +579,62 @@ class Bot(object):
             from pip._vendor import pkg_resources
         except ImportError:
             import pkg_resources
-        return next((p.version for p in pkg_resources.working_set if p.project_name.lower() == 'instabot'), "No match")
+        return next(
+            (
+                p.version
+                for p in pkg_resources.working_set
+                if p.project_name.lower() == "instabot"
+            ),
+            "No match",
+        )
 
     def logout(self, *args, **kwargs):
-        save_checkpoint(self)
         self.api.logout()
-        self.logger.info("Bot stopped. "
-                         "Worked: %s", datetime.datetime.now() - self.start_time)
+        self.logger.info(
+            "Bot stopped. " "Worked: %s", datetime.datetime.now() - self.start_time
+        )
         self.print_counters()
 
     def login(self, **args):
+        """if login function is run threaded, for example in scheduled job,
+        signal will fail because it 'only works in main thread'.
+        In this case, you may want to call login(is_threaded=True).
+        """
         if self.proxy:
-            args['proxy'] = self.proxy
+            args["proxy"] = self.proxy
         if self.api.login(**args) is False:
             return False
         self.prepare()
-        #signal.signal(signal.SIGTERM, self.logout)
-        atexit.register(self.logout)
+        atexit.register(self.print_counters)
+        if "is_threaded" in args:
+            if args["is_threaded"]:
+                return True
+        signal.signal(signal.SIGTERM, self.print_counters)
         return True
 
     def prepare(self):
         storage = load_checkpoint(self)
         if storage is not None:
-            total, self.blocked_actions, self.api.total_requests, self.start_time = storage
+            total, self.blocked_actions, self.api.total_requests, self.start_time = (
+                storage
+            )
 
             for k, v in total.items():
                 self.total[k] = v
 
     def print_counters(self):
+        save_checkpoint(self)
         for key, val in self.total.items():
             if val > 0:
-                self.logger.info("Total {}: {}{}".format(key, val,
-                                                         "/" + str(self.max_per_day[key]) if self.max_per_day.get(key) else ""))
+                self.logger.info(
+                    "Total {}: {}{}".format(
+                        key,
+                        val,
+                        "/" + str(self.max_per_day[key])
+                        if self.max_per_day.get(key)
+                        else "",
+                    )
+                )
         for key, val in self.blocked_actions.items():
             if val:
                 self.logger.info("Blocked {}".format(key))
@@ -888,14 +1022,62 @@ class Bot(object):
 
     # like
 
-    def like(self, media_id, check_media=True):
-        return like(self, media_id, check_media)
+    def like(
+        self,
+        media_id,
+        check_media=True,
+        container_module="feed_short_url",
+        feed_position=0,
+        username=None,
+        user_id=None,
+        hashtag_name=None,
+        hashtag_id=None,
+        entity_page_name=None,
+        entity_page_id=None,
+    ):
+
+        return like(
+            self,
+            media_id,
+            check_media,
+            container_module=container_module,
+            feed_position=feed_position,
+            username=username,
+            user_id=user_id,
+            hashtag_name=hashtag_name,
+            hashtag_id=hashtag_id,
+            entity_page_name=entity_page_name,
+            entity_page_id=entity_page_id,
+        )
 
     def like_comment(self, comment_id):
         return like_comment(self, comment_id)
 
-    def like_medias(self, media_ids, check_media=True):
-        return like_medias(self, media_ids, check_media)
+    def like_medias(
+        self,
+        media_ids,
+        check_media=True,
+        container_module="feed_timeline",
+        username=None,
+        user_id=None,
+        hashtag_name=None,
+        hashtag_id=None,
+        entity_page_name=None,
+        entity_page_id=None,
+    ):
+
+        return like_medias(
+            self,
+            media_ids,
+            check_media,
+            container_module=container_module,
+            username=username,
+            user_id=user_id,
+            hashtag_name=hashtag_name,
+            hashtag_id=hashtag_id,
+            entity_page_name=entity_page_name,
+            entity_page_id=entity_page_id,
+        )
 
     def like_timeline(self, amount=None):
         return like_timeline(self, amount)
@@ -951,13 +1133,17 @@ class Bot(object):
     def watch_users_reels(self, user_ids, max_users=100):
         return watch_users_reels(self, user_ids, max_users=max_users)
     # photo
-    def download_photo(self, media_id, folder='photos', filename=None, save_description=False):
+    def download_photo(
+        self, media_id, folder="photos", filename=None, save_description=False
+    ):
         return download_photo(self, media_id, folder, filename, save_description)
 
-    def download_photos(self, medias, folder='photos', save_description=False):
+    def download_photos(self, medias, folder="photos", save_description=False):
         return download_photos(self, medias, folder, save_description)
 
-    def upload_photo(self, photo, caption=None, upload_id=None, from_video=False, options={}):
+    def upload_photo(
+        self, photo, caption=None, upload_id=None, from_video=False, options={}
+    ):
         """Upload photo to Instagram
 
         @param photo         Path to photo file (String)
@@ -974,11 +1160,7 @@ class Bot(object):
 
 
     # video
-
-    def upload_video(self, video, caption='', thumbnail=None):
-        return upload_video(self, video, caption, thumbnail)
-
-    def upload_video(self, video, caption='', thumbnail=None, options={}):
+    def upload_video(self, video, caption="", thumbnail=None, options={}):
         """Upload video to Instagram
 
         @param video      Path to video file (String)
@@ -991,7 +1173,9 @@ class Bot(object):
         """
         return upload_video(self, video, caption, thumbnail, options)
 
-    def download_video(self, media_id, folder='videos', filename=None, save_description=False):
+    def download_video(
+        self, media_id, folder="videos", filename=None, save_description=False
+    ):
         return download_video(self, media_id, folder, filename, save_description)
 
     # follow
@@ -1044,10 +1228,10 @@ class Bot(object):
     def send_medias(self, media_id, user_ids, text=None):
         return send_medias(self, media_id, user_ids, text)
 
-    def send_hashtag(self, hashtag, user_ids, text='', thread_id=None):
+    def send_hashtag(self, hashtag, user_ids, text="", thread_id=None):
         return send_hashtag(self, hashtag, user_ids, text, thread_id)
 
-    def send_profile(self, profile_user_id, user_ids, text='', thread_id=None):
+    def send_profile(self, profile_user_id, user_ids, text="", thread_id=None):
         return send_profile(self, profile_user_id, user_ids, text, thread_id)
 
     def send_like(self, user_ids, thread_id=None):
@@ -1542,8 +1726,9 @@ class Bot(object):
         return block_bots(self)
 
     # filter
-
-    def filter_medias(self, media_items, filtration=True, quiet=False, is_comment=False):
+    def filter_medias(
+        self, media_items, filtration=True, quiet=False, is_comment=False
+    ):
         return filter_medias(self, media_items, filtration, quiet, is_comment)
 
     def check_media(self, media):
