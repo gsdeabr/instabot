@@ -196,9 +196,9 @@ def send_photo(self, user_ids, filepath, thread_id=None):
         return False
 
     mime_type = guess_type(filepath)
-    if mime_type[0] != "image/jpeg":
-        self.logger.error("Only jpeg files are supported")
-        return False
+    #if mime_type[0] != "image/jpeg":
+    #    self.logger.error("Only jpeg files are supported")
+    #    return False
 
     self.delay("message")
     if not self.api.send_direct_item(
