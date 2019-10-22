@@ -87,7 +87,9 @@ from .bot_get import (
     get_your_medias,
     search_users,
     get_comment1,get_users_commented, get_comment2,get_comment3,get_comment4,get_comment5,get_comment6,get_comment7,get_comment8,get_comment9,get_comment10,get_comment11,get_comment12,get_comment13,get_comment14,get_comment15,get_comment16,get_comment17,get_comment18,get_comment19,get_comment20,get_comment21,get_comment22,get_comment23,get_comment24,get_comment25,get_comment26,get_comment27,get_comment28,get_comment29,get_comment30,get_comment31,get_comment32,get_comment33,get_comment34,get_comment35,get_comment36,get_comment37,get_comment38,get_comment39,get_comment40,get_comment41,get_comment42,get_comment43,get_comment44,get_comment45,get_comment46,get_comment47,get_comment48,get_comment49,get_comment50,get_comment51,get_comment52,get_comment53,get_comment54,get_comment55,get_comment56,get_comment57,get_comment58,get_comment59,get_comment60,get_comment61,get_comment62,get_comment63,get_comment64,get_comment65,get_comment66,get_comment67,get_comment68,get_comment69,get_comment70,get_comment71,get_comment72, get_comment73,get_comment74,get_comment75,get_comment76,get_comment77,get_comment78,get_comment79,get_comment80,get_comment81,get_comment82,get_comment83,get_comment84,get_comment85,get_comment86,get_comment87,get_comment88,get_comment89,get_comment90,get_comment91,get_comment92,get_comment93,get_comment94,get_comment95,get_comment96,get_comment97,get_comment98,get_comment99,get_comment100,get_comment101,get_comment102,get_comment103,
+    get_muted_friends
 )
+
 from .bot_like import (
     like,
     like_comment,
@@ -279,25 +281,36 @@ class Bot(object):
         stop_words=("shop", "store", "free"),
         blacklist_hashtags=["#shop", "#store", "#free"],
         blocked_actions_protection=True,
+        blocked_actions_sleep=False,
+        blocked_actions_sleep_delay=300,
         verbosity=True,
         device=None,
+        save_logfile=True,
+        log_filename=None,
+        log_follow_unfollow=True
     ):
-        self.api = API(device=device, base_path=base_path)
+        self.api = API(
+            device=device,
+            base_path=base_path,
+            save_logfile=save_logfile,
+            log_filename=log_filename
+        )
+        self.log_follow_unfollow = log_follow_unfollow
         self.base_path = base_path
 
-        self.total = {
-            "likes": 0,
-            "unlikes": 0,
-            "follows": 0,
-            "unfollows": 0,
-            "comments": 0,
-            "blocks": 0,
-            "unblocks": 0,
-            "messages": 0,
-            "archived": 0,
-            "unarchived": 0,
-            "stories_viewed": 0,
-        }
+        self.total = dict.fromkeys([
+            "likes",
+            "unlikes",
+            "follows",
+            "unfollows",
+            "comments",
+            "blocks",
+            "unblocks",
+            "messages",
+            "archived",
+            "unarchived",
+            "stories_viewed",
+        ], 0)
 
         self.start_time = datetime.datetime.now()
 
@@ -317,7 +330,8 @@ class Bot(object):
         # limits - follow
         self.filter_users = filter_users
         self.filter_private_users = filter_private_users
-        self.filter_users_without_profile_photo = filter_users_without_profile_photo
+        self.filter_users_without_profile_photo \
+            = filter_users_without_profile_photo
         self.filter_business_accounts = filter_business_accounts
         self.filter_verified_accounts = filter_verified_accounts
         self.filter_previously_followed = filter_previously_followed
@@ -334,15 +348,31 @@ class Bot(object):
 
         self.blocked_actions_protection = blocked_actions_protection
 
-        self.blocked_actions = {'likes': False,
-                                'unlikes': False,
-                                'follows': False,
-                                'unfollows': False,
-                                'comments': False,
-                                'blocks': False,
-                                'unblocks': False,
-                                'messages': False}
 
+        self.blocked_actions = dict.fromkeys([
+            "likes",
+            "unlikes",
+            "follows",
+            "unfollows",
+            "comments",
+            "blocks",
+            "unblocks",
+            "messages"
+        ], False)
+
+        self.blocked_actions_sleep = blocked_actions_sleep
+        self.blocked_actions_sleep_delay = blocked_actions_sleep_delay
+
+        self.sleeping_actions = dict.fromkeys([
+            "likes",
+            "unlikes",
+            "follows",
+            "unfollows",
+            "comments",
+            "blocks",
+            "unblocks",
+            "messages"
+        ], False)
 
 
         self.max_likes_to_like = max_likes_to_like
@@ -351,8 +381,10 @@ class Bot(object):
         self.min_followers_to_follow = min_followers_to_follow
         self.max_following_to_follow = max_following_to_follow
         self.min_following_to_follow = min_following_to_follow
-        self.max_followers_to_following_ratio = max_followers_to_following_ratio
-        self.max_following_to_followers_ratio = max_following_to_followers_ratio
+        self.max_followers_to_following_ratio \
+            = max_followers_to_following_ratio
+        self.max_following_to_followers_ratio = \
+            max_following_to_followers_ratio
         self.min_media_count_to_follow = min_media_count_to_follow
         self.stop_words = stop_words
         self.blacklist_hashtags = blacklist_hashtags
@@ -515,7 +547,8 @@ class Bot(object):
 
     @property
     def blacklist(self):
-        # This is a fast operation because `get_user_id_from_username` is cached.
+        # This is a fast operation because
+        # `get_user_id_from_username` is cached.
         return [
             self.convert_to_user_id(i)
             for i in self.blacklist_file.list
@@ -524,7 +557,8 @@ class Bot(object):
 
     @property
     def whitelist(self):
-        # This is a fast operation because `get_user_id_from_username` is cached.
+        # This is a fast operation because
+        # `get_user_id_from_username` is cached.
         return [
             self.convert_to_user_id(i)
             for i in self.whitelist_file.list
@@ -535,8 +569,10 @@ class Bot(object):
     def following(self):
         now = time.time()
         last = self.last.get("updated_following", now)
-        if self._following is None or now - last > 7200:
-            self.console_print("`bot.following` is empty, will download.", "green")
+        if self._following is None or (now - last) > 7200:
+            self.console_print(
+                "`bot.following` is empty, will download.", "green"
+            )
             self._following = self.get_user_following(self.user_id)
             self.last["updated_following"] = now
         return self._following
@@ -545,8 +581,10 @@ class Bot(object):
     def followers(self):
         now = time.time()
         last = self.last.get("updated_followers", now)
-        if self._followers is None or now - last > 7200:
-            self.console_print("`bot.followers` is empty, will download.", "green")
+        if self._followers is None or (now - last) > 7200:
+            self.console_print(
+                "`bot.followers` is empty, will download.", "green"
+            )
             self._followers = self.get_user_followers(self.user_id)
             self.last["updated_followers"] = now
         return self._followers
@@ -568,7 +606,8 @@ class Bot(object):
     def logout(self, *args, **kwargs):
         self.api.logout()
         self.logger.info(
-            "Bot stopped. " "Worked: %s", datetime.datetime.now() - self.start_time
+            "Bot stopped. " "Worked: %s",
+            datetime.datetime.now() - self.start_time
         )
         self.print_counters()
 
@@ -592,9 +631,8 @@ class Bot(object):
     def prepare(self):
         storage = load_checkpoint(self)
         if storage is not None:
-            total, self.blocked_actions, self.api.total_requests, self.start_time = (
-                storage
-            )
+            total, self.blocked_actions, self.api.total_requests, \
+                self.start_time = (storage)
 
             for k, v in total.items():
                 self.total[k] = v
@@ -608,21 +646,25 @@ class Bot(object):
                         key,
                         val,
                         "/" + str(self.max_per_day[key])
-                        if self.max_per_day.get(key)
-                        else "",
+                        if self.max_per_day.get(key) else "",
                     )
                 )
         for key, val in self.blocked_actions.items():
             if val:
                 self.logger.info("Blocked {}".format(key))
-        self.logger.info("Total requests: {}".format(self.api.total_requests))
+        self.logger.info(
+            "Total requests: {}".format(self.api.total_requests)
+        )
 
 
 
 
 
     def delay(self, key):
-        """Sleep only if elapsed time since `self.last[key]` < `self.delay[key]`."""
+        """
+        Sleep only if elapsed time since
+        `self.last[key]` < `self.delay[key]`.
+        """
         last_action, target_delay = self.last[key], self.delays[key]
         elapsed_time = time.time() - last_action
         if elapsed_time < target_delay:
@@ -671,14 +713,16 @@ class Bot(object):
 
     def get_your_medias(self, as_dict=False):
         """
-        Returns your media ids. With parameter as_dict=True returns media as dict.
+        Returns your media ids. With parameter
+        as_dict=True returns media as dict.
         :type as_dict: bool
         """
         return get_your_medias(self, as_dict)
 
     def get_archived_medias(self, as_dict=False):
         """
-        Returns your archived media ids. With parameter as_dict=True returns media as dict.
+        Returns your archived media ids. With parameter
+        as_dict=True returns media as dict.
         :type as_dict: bool
         """
         return get_archived_medias(self, as_dict)
@@ -991,6 +1035,9 @@ class Bot(object):
     def search_users(self, query):
         return search_users(self, query)
 
+    def get_muted_friends(self, muted_content='stories'):
+        return get_muted_friends(self, muted_content)
+
     def convert_to_user_id(self, usernames):
         return convert_to_user_id(self, usernames)
 
@@ -1111,29 +1158,55 @@ class Bot(object):
         return watch_users_reels(self, user_ids, max_users=max_users)
     # photo
     def download_photo(
-        self, media_id, folder="photos", filename=None, save_description=False
+        self,
+        media_id,
+        folder="photos",
+        filename=None,
+        save_description=False
     ):
-        return download_photo(self, media_id, folder, filename, save_description)
+        return download_photo(
+            self,
+            media_id,
+            folder,
+            filename,
+            save_description
+        )
 
     def download_photos(self, medias, folder="photos", save_description=False):
         return download_photos(self, medias, folder, save_description)
 
     def upload_photo(
-        self, photo, caption=None, upload_id=None, from_video=False, options={}
+        self,
+        photo,
+        caption=None,
+        upload_id=None,
+        from_video=False,
+        options={}
     ):
         """Upload photo to Instagram
+        @param photo        Path to photo file (String)
+        @param caption      Media description (String)
+        @param upload_id    Unique upload_id (String). When None, then
+                            generate automatically
+        @param from_video   A flag that signals whether the photo is loaded
+                            from the video or by itself
+                            (Boolean, DEPRECATED: not used)
+        @param options      Object with difference options,
+                            e.g. configure_timeout, rename (Dict)
+                            Designed to reduce the number of function
+                            arguments! This is the simplest request object.
 
-        @param photo         Path to photo file (String)
-        @param caption       Media description (String)
-        @param upload_id     Unique upload_id (String). When None, then generate automatically
-        @param from_video    A flag that signals whether the photo is loaded from the video or by itself (Boolean, DEPRECATED: not used)
-        @param options       Object with difference options, e.g. configure_timeout, rename (Dict)
-                             Designed to reduce the number of function arguments!
-                             This is the simplest request object.
-
-        @return              Object with state of uploading to Instagram (or False)
+        @return             Object with state of uploading to
+                            Instagram (or False)
         """
-        return upload_photo(self, photo, caption, upload_id, from_video, options)
+        return upload_photo(
+            self,
+            photo,
+            caption,
+            upload_id,
+            from_video,
+            options
+        )
 
 
     # video
@@ -1142,26 +1215,38 @@ class Bot(object):
 
         @param video      Path to video file (String)
         @param caption    Media description (String)
-        @param thumbnail  Path to thumbnail for video (String). When None, then thumbnail is generate automatically
-        @param options    Object with difference options, e.g. configure_timeout, rename_thumbnail, rename (Dict)
+        @param thumbnail  Path to thumbnail for video (String). When None,
+                          then thumbnail is generated automatically
+        @param options    Object with difference options, e.g.
+                          configure_timeout, rename_thumbnail, rename (Dict)
                           Designed to reduce the number of function arguments!
 
-        @return           Object with state of uploading to Instagram (or False)
+        @return           Object with Instagram upload state (or False)
         """
         return upload_video(self, video, caption, thumbnail, options)
 
     def download_video(
-        self, media_id, folder="videos", filename=None, save_description=False
+        self,
+        media_id,
+        folder="videos",
+        filename=None,
+        save_description=False
     ):
-        return download_video(self, media_id, folder, filename, save_description)
+        return download_video(
+            self,
+            media_id,
+            folder,
+            filename,
+            save_description
+        )
 
     # follow
 
     def follow(self, user_id):
         return follow(self, user_id)
 
-    def follow_users(self, user_ids):
-        return follow_users(self, user_ids)
+    def follow_users(self, user_ids, nfollows=None):
+        return follow_users(self, user_ids, nfollows)
 
     def follow_followers(self, user_id, nfollows=None):
         return follow_followers(self, user_id, nfollows)
@@ -1251,7 +1336,12 @@ class Bot(object):
         return comment(self, media_id, comment_text)
 
     def reply_to_comment(self, media_id, comment_text, parent_comment_id):
-        return reply_to_comment(self, media_id, comment_text, parent_comment_id)
+        return reply_to_comment(
+            self,
+            media_id,
+            comment_text,
+            parent_comment_id
+        )
 
     def comment_hashtag(self, hashtag, amount=None):
         return comment_hashtag(self, hashtag, amount)
@@ -1704,7 +1794,11 @@ class Bot(object):
 
     # filter
     def filter_medias(
-        self, media_items, filtration=True, quiet=False, is_comment=False
+        self,
+        media_items,
+        filtration=True,
+        quiet=False,
+        is_comment=False
     ):
         return filter_medias(self, media_items, filtration, quiet, is_comment)
 
